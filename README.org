@@ -1,0 +1,24 @@
+#+TITLE: Basic Selenium-based Moodle CLI
+
+* Why?
+
+My university doesn’t enable the Moodle API but Moodle’s web interface is horrible and clunky.
+
+* What can it do?
+
+Not much!
+
+#+BEGIN_SRC sh :results verbatim :exports results
+./cli.py 
+#+END_SRC
+
+#+RESULTS:
+: Usage: cli.py [OPTIONS] COMMAND [ARGS]...
+: 
+: Options:
+:   --help  Show this message and exit.
+: 
+: Commands:
+:   list-files   List files of a course.
+:   set-text     Set the summary text of a section from a...
+:   upload-file  Upload a file.
