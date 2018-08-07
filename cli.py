@@ -67,9 +67,10 @@ def list_files(course, config):
     s = m.bootstrap()
     s = m.coursef(s, course, editable=False)
     file_list = m.file_list(s)
+    print("File list for {url}:".format(url=s.browser.current_url))
+    print()
     for fn in file_list:
         print(fn)
-    print(s.browser.current_url)
     s.browser.quit()
 
 
