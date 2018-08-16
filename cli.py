@@ -17,7 +17,7 @@ def cli():
 @click.argument("section")
 @click.option('--filename', default=None, help='Read text from this file.')
 @click.option('--config', default="moodle.cfg", help="Configuration file")
-@click.option('--pandoc', default=True, help='Run pandoc on file to convert to HTML before pushing to Moodle.')
+@click.option('--pandoc/--no-pandoc', default=True, help='Run pandoc on file to convert to HTML before pushing to Moodle.')
 @click.option('--finalize/--no-finalize', default=False, help='Save changes on Moodle directly.')
 def set_text(course, section, filename, config, pandoc=True, finalize=False):
     """
