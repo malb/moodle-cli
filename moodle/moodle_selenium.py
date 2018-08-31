@@ -224,14 +224,14 @@ def upload_file(s, name, filename, finalize=False):
 
     xpath = "/".join(["/",
                       "span[contains(text(),'{name}')]",
-                      "..", "..", "..",
+                      "..", "..", "..", "..",
                       "span[@class='actions']",
                       "div", "ul", "li",
                       "a[contains(text(), 'Edit')]"])
     s.browser.find_element_by_xpath(xpath.format(name=name)).click()
     xpath = "/".join(["/",
                       "span[contains(text(),'{name}')]",
-                      "..", "..", "..",
+                      "..", "..", "..", "..",
                       "span[@class='actions']",
                       "div",
                       "ul[@class='menu  align-tr-br']",
