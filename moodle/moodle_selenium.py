@@ -124,6 +124,7 @@ def coursef(s, course, editable=True):
     course = s.config["aliases"].get(course, course)
 
     s.browser.find_element_by_css_selector("a[title=\"My courses\"]").click()
+    s.browser.find_element_by_id("label_2_4").click()
     s.browser.find_element_by_css_selector("a[title=\"{course}\"]".format(course=course)).click()
     if editable:
         s = editablef(s)
