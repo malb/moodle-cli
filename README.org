@@ -22,3 +22,7 @@ Not much!
 :   list-files   List files of a course.
 :   set-text     Set the summary text of a section from a...
 :   upload-file  Upload a file.
+
+* It doesn’t work!
+
+The whole thing is rather fragile as it depends on Moodle’s internal HTML representation which changes from version to version. I’m testing/using it on the Moodle install of my university. I’m happy to use as generic XPATH as possible to support more Moodle versions, but I have no intention of promising any support for anything other than whatever my university is running at the moment.
