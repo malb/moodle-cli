@@ -138,7 +138,8 @@ def editablef(s):
     :returns: state
 
     """
-    s.browser.find_element_by_css_selector("a.btn.btn-success").click()
+    s.browser.find_element_by_id("action-menu-toggle-0").click()
+    s.browser.find_element_by_link_text("Turn editing on").click()
     return s
 
 
