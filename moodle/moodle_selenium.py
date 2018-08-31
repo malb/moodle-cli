@@ -160,11 +160,26 @@ def set_summary(s, headline, text, finalize=False, send_keys=False):
     """
     headline = s.config["aliases"].get(headline, headline)
 
-    xpath = "/".join(["/",
-                      "h3[contains(text(),'{headline}')]",
-                      "..",
-                      "div[@class='summary']",
-                      "a[@title='Edit summary']"])
+    xpath = "/".join(["/", "a[contains(text(),'{headline}')]",
+                      "..", "..", "..", "..", "..",
+                      "div[@class='right side']",
+                      "div[@class='section_action_menu']",
+                      "div",
+                      "ul",
+                      "li",
+                      "a[contains(text(),'Edit')]"])
+
+    s.browser.find_element_by_xpath(xpath.format(headline=headline)).click()
+
+    xpath = "/".join(["/", "a[contains(text(),'{headline}')]",
+                      "..", "..", "..", "..", "..",
+                      "div[@class='right side']",
+                      "div[@class='section_action_menu']",
+                      "div",
+                      "ul[@class='menu align-tr-br']",
+                      "li",
+                      "a[@title='Edit section']"])
+
     s.browser.find_element_by_xpath(xpath.format(headline=headline)).click()
 
     s.browser.find_element_by_xpath('//*[@title="Show more buttons"]').click()
