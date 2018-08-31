@@ -25,13 +25,15 @@ def set_text(course, section, filename, config, pandoc=True, finalize=False):
     """
     config = os.path.abspath(config)
 
+    s = m.bootstrap()
+
     if filename is None:
-        filename = section.strip().lower().replace(" ", "-") + ".md"
+        filename = os.path.join(s.config["set-text"]["base-dir"],
+                                section.strip().lower().replace(" ", "-") + ".md")
     if pandoc:
         text = subprocess.check_output(["pandoc",
                                         "--ascii", "--base-header-level=4",
                                         filename]).decode("utf-8")
-    s = m.bootstrap()
     s = m.coursef(s, course, editable=True)
     s = m.set_summary(s, section, text, finalize=finalize)
     if s.config["ui"].getboolean("headless") or finalize:
