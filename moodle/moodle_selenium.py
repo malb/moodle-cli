@@ -246,7 +246,7 @@ def upload_file(s, name, filename, finalize=False):
         By.XPATH, "//input[@name='repo_upload_file']"))).send_keys(filename)
     s.browser.find_element_by_xpath("//button[@class='fp-upload-btn btn-primary btn']").click()
     try:
-        WebDriverWait(s.browser, 5).until(EC.visibility_of_element_located((
+        WebDriverWait(s.browser, 30).until(EC.visibility_of_element_located((
             By.XPATH, "//button[@class='fp-dlg-butoverwrite btn']"))).click()
     except TimeoutException:
         pass
