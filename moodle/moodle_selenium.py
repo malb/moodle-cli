@@ -171,16 +171,29 @@ def set_summary(s, headline, text, finalize=False, send_keys=False):
 
     s.browser.find_element_by_xpath(xpath.format(headline=headline)).click()
 
-    xpath = "/".join(["/", "a[contains(text(),'{headline}')]",
-                      "..", "..", "..", "..", "..",
-                      "div[@class='right side']",
-                      "div[@class='section_action_menu']",
-                      "div",
-                      "ul[@class='menu align-tr-br']",
-                      "li",
-                      "a[@title='Edit section']"])
+    try:
+        xpath = "/".join(["/", "a[contains(text(),'{headline}')]",
+                          "..", "..", "..", "..", "..",
+                          "div[@class='right side']",
+                          "div[@class='section_action_menu']",
+                          "div",
+                          "ul[@class='menu align-tr-br']",
+                          "li",
+                          "a[@title='Edit section']"])
 
-    s.browser.find_element_by_xpath(xpath.format(headline=headline)).click()
+        s.browser.find_element_by_xpath(xpath.format(headline=headline)).click()
+    except NoSuchElementException:
+        xpath = "/".join(["/", "a[contains(text(),'{headline}')]",
+                          "..", "..", "..", "..", "..",
+                          "div[@class='right side']",
+                          "div[@class='section_action_menu']",
+                          "div",
+                          "ul[@class='menu align-tr-br']",
+                          "li",
+                          "a[@title='Edit topic']"])
+
+        s.browser.find_element_by_xpath(xpath.format(headline=headline)).click()
+
 
     s.browser.find_element_by_xpath('//*[@title="Show more buttons"]').click()
     s.browser.find_element_by_xpath('//*[@title="HTML"]').click()
