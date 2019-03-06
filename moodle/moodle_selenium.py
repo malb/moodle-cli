@@ -18,6 +18,8 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
+from .wait import wait_for_page_load
+
 
 def configf(filename):
     """
@@ -281,5 +283,7 @@ def upload_file(s, name, filename, finalize=False):
 
     if s.config["ui"].getboolean("headless") or finalize:
         ActionChains(s.browser).move_to_element(s.browser.find_element_by_id("id_submitbutton2")).click().perform()
+        with wait_for_page_load(s.browser):
+            pass
 
     return s
