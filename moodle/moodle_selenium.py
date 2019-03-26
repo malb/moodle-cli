@@ -11,7 +11,7 @@ from collections import namedtuple
 
 from selenium.common.exceptions import (NoSuchElementException,
                                         TimeoutException)
-from selenium.webdriver import Firefox
+from selenium.webdriver import Chrome
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
@@ -51,7 +51,7 @@ def browserf(config):
         opts.set_headless()
         assert opts.headless
 
-    browser = Firefox(options=opts)
+    browser = Chrome(options=opts)
 
     if not headless:
         browser.set_window_size(int(config["ui"]["xdim"]),
