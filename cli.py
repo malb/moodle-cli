@@ -57,7 +57,6 @@ def upload_file(course, name, filename, config, finalize=False):
     if s.config["ui"].getboolean("headless") or finalize:
         s.browser.quit()
 
-
 @cli.command("list-files")
 @click.argument("course")
 @click.option('--config', default="moodle.cfg", help="Configuration file")

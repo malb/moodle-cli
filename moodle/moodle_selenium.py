@@ -12,13 +12,15 @@ from collections import namedtuple
 from selenium.common.exceptions import (NoSuchElementException,
                                         TimeoutException)
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
+
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from .wait import wait_for_page_load
+import time
+# from .wait import wait_for_page_load
 
 
 def configf(filename):
@@ -49,7 +51,7 @@ def browserf(config):
 
     if headless:
         opts.set_headless()
-        assert opts.headless
+    opts.add_experimental_option("detach", True)
 
     browser = Chrome(options=opts)
 
@@ -213,6 +215,7 @@ def set_summary(s, headline, text, finalize=False, send_keys=False):
 
     if s.config["ui"].getboolean("headless") or finalize:
         s.browser.find_element_by_id("id_submitbutton").click()
+        file_list(s)  # NOTE dummy to force waiting for page load
 
     return s
 
@@ -281,9 +284,11 @@ def upload_file(s, name, filename, finalize=False):
     except TimeoutException:
         pass
 
+    WebDriverWait(s.browser, 30).until(EC.invisibility_of_element_located((
+        By.XPATH, "//button[@class='fp-dlg-butoverwrite btn']")))
+
     if s.config["ui"].getboolean("headless") or finalize:
         ActionChains(s.browser).move_to_element(s.browser.find_element_by_id("id_submitbutton2")).click().perform()
-        with wait_for_page_load(s.browser):
-            pass
+        file_list(s)  # NOTE dummy to force waiting for page load
 
     return s
